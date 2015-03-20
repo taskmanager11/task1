@@ -55,16 +55,21 @@ void My1::TextChanged(QString str)
 {
     ok->setEnabled(!str.isEmpty());
 }
+
 void My1::okCl()
 {
-CTask_Entity *task= new CTask_Entity;
-task->percent=vaga->value();
-if(galochka1->isChecked())
-{task->state="done"; }
-else if(galochka2->isChecked())
-{task->state="doing"; }
-else if(galochka3->isChecked())
-{task->state="do_it"; }
-task->title=line->text();
-emit taskSaved(task);
+    CTask_Entity *task= new CTask_Entity;
+    task->percent=vaga->value();
+    if(galochka1->isChecked())
+    {task->state="done"; }
+    else if(galochka2->isChecked())
+    {task->state="doing"; }
+    else if(galochka3->isChecked())
+    {task->state="do_it"; }
+    task->title=line->text();
+    emit taskSaved(task);
+    CTask_Entity *text=new CTask_Entity;
+    text->title=line->text();
+    CTask_Entity *stan=new CTask_Entity;
+    stan->state=slid->value();
 }

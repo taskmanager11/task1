@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->model = new TaskModel();
+
+    this->ui->tableView->setModel(this->model);
 }
 
 MainWindow::~MainWindow()
@@ -19,3 +22,13 @@ MainWindow::~MainWindow()
 window->show();
 }
 */
+
+void MainWindow::on_pushButton_clicked()
+{
+    emit addInvoked();
+}
+
+void MainWindow::addTaskEntity(CTask_Entity *task)
+{
+    this->model->addTaskEntity(task);
+}

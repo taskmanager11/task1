@@ -24,7 +24,17 @@
      </rect>
     </property>
     <property name="text">
-     <string>Journal</string>
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>481</width>
+      <height>251</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -34,7 +44,7 @@
      <x>0</x>
      <y>0</y>
      <width>605</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

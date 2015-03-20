@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    My1.cpp
+    My1.cpp \
+    taskmodel.cpp
 
 HEADERS  += mainwindow.h \
     My1.h \
-    Task_entity.h
+    Task_entity.h \
+    taskmodel.h
 
 FORMS    += mainwindow.ui
