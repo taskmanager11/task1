@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->model = new TaskModel();
 
     this->ui->tableView->setModel(this->model);
+    setWindowTitle("Task Manager");
 }
 
 MainWindow::~MainWindow()
@@ -32,3 +33,5 @@ void MainWindow::addTaskEntity(CTask_Entity *task)
 {
     this->model->addTaskEntity(task);
 }
+
+

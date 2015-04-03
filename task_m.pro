@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     My1.cpp \
-    taskmodel.cpp
+    taskmodel.cpp \
+    Task_entity.cpp
 
 HEADERS  += mainwindow.h \
     My1.h \

@@ -18,7 +18,9 @@ public:
     My1(QWidget *parent=0);
 private:
     QLabel *lbl;
+    QLabel *lbl2;
     QLineEdit *line;
+     QLineEdit *text2;
       QPushButton *ok;
       QRadioButton *galochka1;
       QRadioButton *galochka2;

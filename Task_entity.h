@@ -2,14 +2,18 @@
 #define TASK_ENTITY_H
 
  class CTask_Entity{
-  public:
+  protected:
      quint8 percent;
      QString title;
      QString state;
+     QString detail;
 
 
-  CTask_Entity()
+  public:
+     CTask_Entity()
   {}
+     quint8 getPercent();
+     void setPercent(quint8);
 
 
  };
