@@ -73,18 +73,18 @@ void My1::okCl()
     CTask_Entity *task= new CTask_Entity;
     task->setPercent(vaga->value());
     if(galochka1->isChecked())
-    {task->state="Well done!"; }
+    {task->setState("Well done!"); }
     else if(galochka2->isChecked())
-    {task->state="I`m doing it!"; }
+    {task->setState("I`m doing it!"); }
     else if(galochka3->isChecked())
-    {task->state="Do it!"; }
-    task->title=line->text();
+    {task->setState("Do it!"); }
+    task->setTitle(line->text());
     CTask_Entity *text=new CTask_Entity;
-    text->title=line->text();
-    task->detail=text2->text();
+    text->setTitle(line->text());
+    task->setDetail(text2->text());
     emit taskSaved(task);
     CTask_Entity *details=new CTask_Entity;
-    text->detail=text2->text();
-    CTask_Entity *stan=new CTask_Entity;
-    stan->state=slid->value();
+    text->setDetail(text2->text());
+   /*CTask_Entity *stan=new CTask_Entity;
+    stan-> setState ( slid->value());*/
 }

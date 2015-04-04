@@ -58,14 +58,14 @@ QVariant TaskModel::data(const QModelIndex & index, int role) const
 
         switch  (index.column()) {
         case 0:
-            return this->tasks.at(index.row())->state;
+            return this->tasks.at(index.row())->getState();
 
         case 1:
-            return this->tasks.at(index.row())->title;
+            return this->tasks.at(index.row())->getTitle();
 
         case 2:
 
-        return this->tasks.at(index.row())->detail;
+        return this->tasks.at(index.row())->getDetail();
 
         case 3:
             return this->tasks.at(index.row())->getPercent();
