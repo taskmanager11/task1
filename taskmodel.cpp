@@ -1,5 +1,6 @@
 #include "taskmodel.h"
 #include <QStringList>
+#include <QTableView>
 
 TaskModel::TaskModel()
 {
@@ -44,7 +45,7 @@ QVariant TaskModel::headerData(int section, Qt::Orientation orientation, int rol
             case 2:
                 return ("Details");
                case 3:
-            return ("Persent");
+            return ("Percent");
 
             default:
                 return QVariant();
@@ -83,4 +84,47 @@ void TaskModel::addTaskEntity(CTask_Entity *task)
     beginInsertRows(QModelIndex(), rowNum, rowNum);
     this->tasks.append(task);
     endInsertRows();
+}
+
+CTask_Entity *TaskModel::getTaskEntity(QModelIndex &index)
+{
+ return this->tasks.at(index.row());
+
+}
+
+void TaskModel::removeTaskEntity(QModelIndex index)
+{
+            int row = index.row();
+            beginRemoveRows(QModelIndex(),row,row);
+            CTask_Entity *C = this->tasks.takeAt(row);
+            delete(C);
+            endRemoveRows();
+}
+//void TaskModel::editEntry()
+//{
+//    QTableView *temp = static_cast<QTableView*>(currentWidget());
+//   QSortFilterProxyModel *proxy = static_cast<QSortFilterProxyModel*>(temp->model());
+//   QItemSelectionModel *selectionModel = temp->selectionModel();
+
+//    QModelIndexList indexes = selectionModel->selectedRows();
+//    QString name;
+//    QString address;
+//    int row = -1;
+
+//    foreach (QModelIndex index, indexes) {
+//        row = proxy->mapToSource(index).row();
+//        QModelIndex nameIndex = table->index(row, 0, QModelIndex());
+//        QVariant varName = table->data(nameIndex, Qt::DisplayRole);
+//        name = varName.toString();
+
+//        QModelIndex addressIndex = table->index(row, 1, QModelIndex());
+//        QVariant varAddr = table->data(addressIndex, Qt::DisplayRole);
+//        address = varAddr.toString();
+//    }
+//}
+
+void TaskModel::updateTaskEntity(QModelIndex index, CTask_Entity *entity)
+{
+    int row = index.row();
+    this->tasks.replace(row, entity);
 }

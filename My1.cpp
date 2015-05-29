@@ -2,6 +2,8 @@
 
 My1::My1(QWidget *parent) : QDialog(parent)
 {
+    m_task = NULL;
+
     lbl = new QLabel("&Task");
     line =new QLineEdit;
      lbl->setBuddy(line);
@@ -53,7 +55,7 @@ My1::My1(QWidget *parent) : QDialog(parent)
 
  connect(line, SIGNAL(textChanged(QString)), this, SLOT(TextChanged(QString)));
  connect(text2, SIGNAL(textChanged(QString)), this, SLOT(TextChanged(QString)));
-connect(close, SIGNAL(clicked()), SLOT(close()));
+connect(close, SIGNAL(clicked()), SLOT(reject()));
  setLayout(layout3);
 
  connect(ok, SIGNAL(clicked()), this, SLOT(okCl()));
@@ -61,7 +63,25 @@ connect(close, SIGNAL(clicked()), SLOT(close()));
   setWindowTitle("Add Task");
 }
 
+void My1::AddEntity()
+{
+    m_task = NULL;
+    this->exec();
+}
 
+void My1::EditEntity(CTask_Entity *entity)
+{
+    m_task = entity;
+
+    line->setText(entity->getTitle());
+    text2->setText(entity->getDetail());
+    slid->setValue(entity->getPercent());
+    galochka1->setChecked(entity->getState() == "Well done!");
+    galochka2->setChecked(entity->getState() == "I`m doing it!");
+    galochka3->setChecked(entity->getState() == "Do it!");
+
+    this->exec();
+}
 
 void My1::TextChanged(QString str)
 {
@@ -70,21 +90,49 @@ void My1::TextChanged(QString str)
 
 void My1::okCl()
 {
-    CTask_Entity *task= new CTask_Entity;
-    task->setPercent(vaga->value());
+    m_task->setPercent(vaga->value());
     if(galochka1->isChecked())
-    {task->setState("Well done!"); }
+    {m_task->setState("Well done!"); }
     else if(galochka2->isChecked())
-    {task->setState("I`m doing it!"); }
+    {m_task->setState("I`m doing it!"); }
     else if(galochka3->isChecked())
-    {task->setState("Do it!"); }
-    task->setTitle(line->text());
+    {m_task->setState("Do it!"); }
+    m_task->setTitle(line->text());
     CTask_Entity *text=new CTask_Entity;
     text->setTitle(line->text());
-    task->setDetail(text2->text());
-    emit taskSaved(task);
-    CTask_Entity *details=new CTask_Entity;
-    text->setDetail(text2->text());
+    m_task->setDetail(text2->text());
+    this->accept();
+//    emit taskSaved(task);
+//    CTask_Entity *details=new CTask_Entity;
+//    text->setDetail(text2->text());
    /*CTask_Entity *stan=new CTask_Entity;
     stan-> setState ( slid->value());*/
+}
+
+void My1::setTask(CTask_Entity *entity)
+{
+    m_task = entity;
+}
+
+void My1::resetTask()
+{
+    m_task = new CTask_Entity();
+}
+
+CTask_Entity *My1::task()
+{
+    return m_task;
+}
+
+int My1::exec() {
+    if (m_task) {
+        line->setText(m_task->getTitle());
+        text2->setText(m_task->getDetail());
+        slid->setValue(m_task->getPercent());
+        galochka1->setChecked(m_task->getState() == "Well done!");
+        galochka2->setChecked(m_task->getState() == "I`m doing it!");
+        galochka3->setChecked(m_task->getState() == "Do it!");
+    }
+
+    QDialog::exec();
 }

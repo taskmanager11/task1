@@ -1,4 +1,4 @@
-#include "My1.h"
+//#include "My1.h"
 #include <QApplication>
 #include "mainwindow.h"
 /*#include <QPushButton>
@@ -10,12 +10,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    My1 *window = new My1();
+//    My1 *window = new My1();
 
     MainWindow *window2=new MainWindow();
 
-    QObject::connect(window2, SIGNAL(addInvoked()), window, SLOT(exec()));
-    QObject::connect(window, SIGNAL(taskSaved(CTask_Entity*)), window2, SLOT(addTaskEntity(CTask_Entity*)));
+//    QObject::connect(window2, SIGNAL(addInvoked()), window, SLOT(AddEntity()));
+//    QObject::connect(window, SIGNAL(taskSaved(CTask_Entity*)), window2, SLOT(addTaskEntity(CTask_Entity*)));
+//    QObject::connect(window2, SIGNAL(editInvoked(CTask_Entity*)), window, SLOT(EditEntity(CTask_Entity*)));
 
     window2->show();
 

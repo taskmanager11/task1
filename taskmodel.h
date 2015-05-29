@@ -17,6 +17,10 @@ public:
      QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
     void addTaskEntity(CTask_Entity *task);
+    void removeTaskEntity(QModelIndex);
+    void updateTaskEntity(QModelIndex, CTask_Entity *);
+//    void editEntry();
+    CTask_Entity *getTaskEntity(QModelIndex &);
 
 protected:
     QList<CTask_Entity *> tasks;

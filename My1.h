@@ -16,6 +16,13 @@ class My1: public QDialog
     Q_OBJECT
 public:
     My1(QWidget *parent=0);
+
+    void setTask(CTask_Entity *);
+    void resetTask();
+    CTask_Entity *task();
+
+    int exec();
+
 private:
     QLabel *lbl;
     QLabel *lbl2;
@@ -28,9 +35,15 @@ private:
     QPushButton *close;
     QSpinBox *vaga;
     QSlider *slid;
+
+    CTask_Entity *m_task;
 private slots:
     void okCl();
     void TextChanged(QString str);
+
+public slots:
+    void AddEntity();
+    void EditEntity(CTask_Entity*);
 
 
 signals:
